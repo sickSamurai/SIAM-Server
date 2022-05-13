@@ -5,7 +5,7 @@
   "main": "app.js",
   "author": "Laurent",
   "license": "MIT",
-  "repository": ,
+  "repository": "https://github.com/sickSamurai/SIAM-Server",
   "scripts": {
     "run": "node app.js"
   },
