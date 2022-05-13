@@ -1,10 +1,12 @@
-const evalueData = require('../models/dbAccess')
-const intervalTime = 30000
 const { Socket } = require('socket.io')
+const RoutesSendingManager = require('../models/routes-sending-manager')
 
-const socketController = (socket = Socket()) => {
+const intervalTime = 30000
+
+const socketController = (socket = new Socket()) => {
+  const routesManager = new RoutesSendingManager()
   const interval = setInterval(() => {
-    socket.emit('sending-data', evalueData())
+    socket.emit('sending-data', routesManager.evalueData())
   }, intervalTime)
 
   socket.on('connection', () => interval())
