@@ -5,11 +5,16 @@ const intervalTime = 30000
 
 const socketController = (socket = new Socket()) => {
   const routesManager = new RoutesSendingManager()
-  const interval = setInterval(() => {
-    socket.emit('sending-data', routesManager.evalueData())
-  }, intervalTime)
+  let interval
 
-  socket.on('connection', () => interval())
+  socket.on(
+    'connection',
+    () =>
+      (interval = setInterval(
+        () => socket.emit('sending-data', routesManager.evalueData()),
+        intervalTime
+      ))
+  )
   socket.on('disconnection', () => clearInterval(interval))
 }
 

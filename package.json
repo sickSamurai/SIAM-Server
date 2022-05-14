@@ -1,18 +1,27 @@
 {
-  "name": "SIAM-Server",
+  "name": "siam-server",
   "version": "1.0.0",
   "description": "Web Server para aplicación que envia rutas de TM por demanda",
   "main": "app.js",
   "author": "Laurent",
   "license": "MIT",
-  "repository": "https://github.com/sickSamurai/SIAM-Server",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sickSamurai/SIAM-Server.git"
+  },
   "scripts": {
-    "run": "node app.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "socket.io": "^4.5.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/sickSamurai/SIAM-Server/issues"
+  },
+  "homepage": "https://github.com/sickSamurai/SIAM-Server#readme",
+  "devDependencies": {},
+  "keywords": []
 }
