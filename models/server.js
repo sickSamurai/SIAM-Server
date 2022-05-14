@@ -13,7 +13,7 @@ class Server {
   }
 
   configSocket() {
-    io.on('connection', socketController)
+    this.io.on('connection', socketController)
   }
 
   configMiddlewares() {
@@ -21,7 +21,7 @@ class Server {
     this.expressApp.use(cors())
 
     /*Servir web app ubicada en public*/
-    this.expressApp.use(express.static('public'))
+    this.expressApp.use(express.static('public/src'))
   }
 
   listen() {

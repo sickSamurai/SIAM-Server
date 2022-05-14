@@ -7,14 +7,12 @@ const socketController = (socket = new Socket()) => {
   const routesManager = new RoutesSendingManager()
   let interval
 
-  socket.on(
-    'connection',
-    () =>
-      (interval = setInterval(
-        () => socket.emit('sending-data', routesManager.evalueData()),
-        intervalTime
-      ))
-  )
+  socket.on('connection', () => {
+    interval = setInterval(() => {
+      socket.emit('sending-data', routesManager.evalueData())
+      console.log(routesManager.evalueData())
+    }, intervalTime)
+  })
   socket.on('disconnection', () => clearInterval(interval))
 }
 

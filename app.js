@@ -4,7 +4,5 @@ const Server = require('./models/server')
 
 const server = new Server()
 server.configMiddlewares()
+server.configSocket()
 server.listen()
-const routes = new RoutesSendingManager()
-
-setInterval(() => console.log(routes.evalueData()), 3000)

@@ -1,8 +1,7 @@
-const { route } = require('express/lib/application')
 const fs = require('fs')
 const path = require('path')
-const databasePath = '../database/routes-data.json'
 const { performance } = require('perf_hooks')
+const databasePath = '../database/routes-data.json'
 
 const timeToSend = 900000
 const numbersOfUsersToSend = 70
@@ -30,9 +29,7 @@ class RoutesSendingManager {
     if (this.routeData.time >= timeToSend || this.routeData.numbersOfUsers >= numbersOfUsersToSend) {
       this.routeData.readyToGo = true
       this.routeData.startTime = 0
-    } else {
-      this.routeData.readyToGo = false
-    }
+    } else this.routeData.readyToGo = false
   }
 }
 
