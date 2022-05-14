@@ -9,7 +9,7 @@ class Server {
     this.port = process.env.PORT
     this.expressApp = express()
     this.server = http.createServer(this.expressApp)
-    this.io = require('socket.io')(this.server)
+    this.io = require('socket.io')(this.server, { cors: { origin: '*' } })
   }
 
   configSocket() {
@@ -17,9 +17,6 @@ class Server {
   }
 
   configMiddlewares() {
-    /*habilitar cors*/
-    this.expressApp.use(cors())
-
     /*Servir web app ubicada en public*/
     this.expressApp.use(express.static('public/src'))
   }
