@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const { performance } = require('perf_hooks')
-const databasePath = '../database/routes-data.json'
+const databasePath = 'C:/SIAM-Data/routes-data.json'
 
 const timeToSend = 900000
 const numbersOfUsersToSend = 70
