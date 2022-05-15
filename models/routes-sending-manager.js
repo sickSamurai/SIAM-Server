@@ -26,7 +26,7 @@ class RoutesSendingManager {
   }
 
   updateRouteStatus = () => {
-    if (this.route.timeWaiting >= timeToSend || this.route.numbersOfUsers >= numberOfUsersToSend) {
+    if (this.route.timeWaiting >= timeToSend || this.route.numberOfUsers >= numberOfUsersToSend) {
       this.route.setReadyToGo()
       this.route.restartWaitingTime()
     } else this.route.setToWaiting()

@@ -1,9 +1,9 @@
 const { performance } = require('perf_hooks')
 
 class Route {
-  constructor(name = '', numbersOfUsers = 0) {
+  constructor(name = '', numberOfUsers = 0) {
     this.name = name
-    this.numbersOfUsers = numbersOfUsers
+    this.numberOfUsers = numberOfUsers
     this.timeWaiting = 0
     this.startTime = performance.now()
     this.isReadyToGo = false
