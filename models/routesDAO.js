@@ -1,12 +1,8 @@
 const fs = require('fs')
+const os = require('os')
+const path = require('path')
 
-const paths = {
-  win32: 'C:/SIAM-Data/routes-data.json',
-  darwin: '~/SIAM/routes-data.json',
-  linux: '~/SIAM/routes-data.json'
-}
-
-const databasePath = paths[process.platform]
+const databasePath = path.join(`${os.homedir()}`, 'SIAM', 'routes-data.json')
 
 const getData = () => {
   data = fs.readFileSync(databasePath).toString()
