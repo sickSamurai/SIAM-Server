@@ -1,7 +1,7 @@
 const { Socket } = require('socket.io')
-const RoutesSendingManager = require('../models/routes-sending-manager')
+const RoutesSendingManager = require('../models/routes-manager')
 
-const intervalTime = 30000
+const intervalTime = 15000
 
 const socketController = (socket = new Socket()) => {
   const routesManager = new RoutesSendingManager()
@@ -10,7 +10,6 @@ const socketController = (socket = new Socket()) => {
   socket.on('connection', () => {
     interval = setInterval(() => {
       socket.emit('sending-data', routesManager.updateRouteData())
-      console.log(routesManager.updateRouteData())
     }, intervalTime)
   })
 

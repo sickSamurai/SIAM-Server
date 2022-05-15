@@ -6,13 +6,13 @@ class Route {
   constructor(name = '', numberOfUsers = 0) {
     this.name = name
     this.numberOfUsers = numberOfUsers
-    this.timeWaiting = 0
     this.startTime = performance.now()
+    this.timeWaiting = 0
     this.isReady = false
   }
 
   updateWaitingTime() {
-    this.timeWaiting = 1000 * (performance.now() - this.startTime)
+    this.timeWaiting = (performance.now() - this.startTime)/1000
   }
 
   restartWaitingTime() {
