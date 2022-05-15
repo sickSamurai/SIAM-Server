@@ -1,12 +1,13 @@
 const { performance } = require('perf_hooks')
-
+const numberOfUsersToSend = 2
+const timeToSend = 60000
 class Route {
   constructor(name = '', numberOfUsers = 0) {
     this.name = name
     this.numberOfUsers = numberOfUsers
     this.timeWaiting = 0
     this.startTime = performance.now()
-    this.isReadyToGo = false
+    this.isReady = false
   }
 
   updateWaitingTime() {
@@ -18,12 +19,9 @@ class Route {
     this.timeWaiting = 0
   }
 
-  setToWaiting() {
-    this.isReadyToGo = false
-  }
-
-  setReadyToGo() {
-    this.routeData = true
+  updateStatus() {
+    this.isReady = this.numberOfUsers >= numberOfUsersToSend || this.timeWaiting >= timeToSend
+    if (this.isReady) this.restartWaitingTime()
   }
 }
 
