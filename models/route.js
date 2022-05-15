@@ -1,6 +1,7 @@
 const { performance } = require('perf_hooks')
 const numberOfUsersToSend = 2
-const timeToSend = 60000
+const timeToSend = 60
+
 class Route {
   constructor(name = '', numberOfUsers = 0) {
     this.name = name
@@ -11,7 +12,7 @@ class Route {
   }
 
   updateWaitingTime() {
-    this.timeWaiting = performance.now() - this.startTime
+    this.timeWaiting = 1000 * (performance.now() - this.startTime)
   }
 
   restartWaitingTime() {
