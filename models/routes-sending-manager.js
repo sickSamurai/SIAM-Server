@@ -2,7 +2,7 @@ const { getData } = require('../models/routesDAO')
 const Route = require('./route')
 
 const timeToSend = 900000
-const numbersOfUsersToSend = 70
+const numberOfUsersToSend = 70
 
 class RoutesSendingManager {
   constructor() {
@@ -26,7 +26,7 @@ class RoutesSendingManager {
   }
 
   updateRouteStatus = () => {
-    if (this.route.timeWaiting >= timeToSend || this.route.numbersOfUsers >= numbersOfUsersToSend) {
+    if (this.route.timeWaiting >= timeToSend || this.route.numbersOfUsers >= numberOfUsersToSend) {
       this.route.setReadyToGo()
       this.route.restartWaitingTime()
     } else this.route.setToWaiting()
