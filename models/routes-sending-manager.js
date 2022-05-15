@@ -1,37 +1,35 @@
-const fs = require('fs')
-const path = require('path')
-const { performance } = require('perf_hooks')
-const RouteData = require('./route-data')
-const databasePath = '../database/routes-data.json'
+const { getData } = require('../models/routesDAO')
+const Route = require('./route')
 
 const timeToSend = 900000
 const numberOfUsersToSend = 70
 
 class RoutesSendingManager {
   constructor() {
-    this.startTime = performance.now()
-    this.routeData = new RouteData()
+    this.route = new Route()
   }
 
-  getData = () => JSON.parse(fs.readFileSync(path.join(__dirname, databasePath)).toString())
+  getDataFromDB = () => {
+    const { name, numbersOfUsers } = getData()
+    return new Route(name, numbersOfUsers)
+  }
 
-  setTime = () => {
-    this.routeData.time = performance.now() - this.startTime
+  updateWaitingTime = () => {
+    this.route.updateWaitingTime()
   }
 
   updateRouteData = () => {
-    this.routeData = this.getData()
-    this.setTime()
-    this.determineIfSendRoute()
-    return this.routeData
+    this.route = this.getDataFromDB()
+    this.updateWaitingTime()
+    this.updateRouteStatus()
+    return this.route
   }
 
-  determineIfSendRoute = () => {
-    if (this.routeData.time >= timeToSend 
-      || this.routeData.numberOfUsers >= numberOfUsersToSend) {
-      this.routeData.readyToGo = true
-      this.routeData.startTime = 0
-    } else this.routeData.readyToGo = false
+  updateRouteStatus = () => {
+    if (this.route.timeWaiting >= timeToSend || this.route.numbersOfUsers >= numbersOfUsersToSend) {
+      this.route.setReadyToGo()
+      this.route.restartWaitingTime()
+    } else this.route.setToWaiting()
   }
 }
 

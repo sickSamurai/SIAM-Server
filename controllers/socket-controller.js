@@ -10,6 +10,7 @@ const socketController = (socket = new Socket()) => {
   socket.on('connection', () => {
     interval = setInterval(() => {
       socket.emit('sending-data', routesManager.updateRouteData())
+      console.log(routesManager.updateRouteData())
     }, intervalTime)
   })
 
