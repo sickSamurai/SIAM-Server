@@ -10,8 +10,8 @@ class RoutesSendingManager {
   }
 
   getDataFromDB = () => {
-    const { name, numbersOfUsers } = getData()
-    return new Route(name, numbersOfUsers)
+    const { name, numberOfUsers } = getData()
+    return new Route(name, numberOfUsers)
   }
 
   updateWaitingTime = () => {
