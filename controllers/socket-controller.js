@@ -9,8 +9,8 @@ const socketController = (socket = new Socket()) => {
 
   socket.on('connection', () => {
     interval = setInterval(() => {
-      socket.emit('sending-data', routesManager.evalueData())
-      console.log(routesManager.evalueData())
+      socket.emit('sending-data', routesManager.updateRouteData())
+      console.log(routesManager.updateRouteData())
     }, intervalTime)
   })
   socket.on('disconnection', () => clearInterval(interval))
