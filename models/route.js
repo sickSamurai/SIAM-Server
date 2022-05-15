@@ -1,5 +1,5 @@
-const { is } = require('express/lib/request')
 const { performance } = require('perf_hooks')
+
 class Route {
   constructor(name = '', numbersOfUsers = 0) {
     this.name = name
