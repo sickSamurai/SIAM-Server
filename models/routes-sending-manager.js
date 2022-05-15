@@ -1,15 +1,16 @@
 const fs = require('fs')
 const path = require('path')
 const { performance } = require('perf_hooks')
+const RouteData = require('./route-data')
 const databasePath = '../database/routes-data.json'
 
 const timeToSend = 900000
-const numbersOfUsersToSend = 70
+const numberOfUsersToSend = 70
 
 class RoutesSendingManager {
   constructor() {
     this.startTime = performance.now()
-    this.routeData = this.getData()
+    this.routeData = new RouteData()
   }
 
   getData = () => JSON.parse(fs.readFileSync(path.join(__dirname, databasePath)).toString())
@@ -18,15 +19,16 @@ class RoutesSendingManager {
     this.routeData.time = performance.now() - this.startTime
   }
 
-  evalueData = () => {
+  updateRouteData = () => {
     this.routeData = this.getData()
     this.setTime()
-    this.determineIfSend()
+    this.determineIfSendRoute()
     return this.routeData
   }
 
-  determineIfSend = () => {
-    if (this.routeData.time >= timeToSend || this.routeData.numbersOfUsers >= numbersOfUsersToSend) {
+  determineIfSendRoute = () => {
+    if (this.routeData.time >= timeToSend 
+      || this.routeData.numberOfUsers >= numberOfUsersToSend) {
       this.routeData.readyToGo = true
       this.routeData.startTime = 0
     } else this.routeData.readyToGo = false

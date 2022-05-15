@@ -18,7 +18,7 @@ class Server {
 
   configMiddlewares() {
     /*Servir web app ubicada en public*/
-    this.expressApp.use(express.static('public/src'))
+    this.expressApp.use(express.static('public'))
   }
 
   listen() {
