@@ -1,7 +1,5 @@
-const fs = require('fs')
-const { performance } = require('perf_hooks')
+const { getData } = require('../models/routesDAO')
 const Route = require('./route')
-const databasePath = 'C:/SIAM-Data/routes-data.json'
 
 const timeToSend = 900000
 const numbersOfUsersToSend = 70
@@ -12,7 +10,7 @@ class RoutesSendingManager {
   }
 
   getDataFromDB = () => {
-    const { name, numbersOfUsers } = JSON.parse(fs.readFileSync(databasePath).toString())
+    const { name, numbersOfUsers } = getData()
     return new Route(name, numbersOfUsers)
   }
 
