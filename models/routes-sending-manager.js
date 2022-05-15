@@ -23,11 +23,11 @@ class RoutesSendingManager {
   updateRouteData = () => {
     this.route = this.getDataFromDB()
     this.updateWaitingTime()
-    this.determineIfSend()
+    this.updateRouteStatus()
     return this.route
   }
 
-  determineIfSend = () => {
+  updateRouteStatus = () => {
     if (this.route.timeWaiting >= timeToSend || this.route.numbersOfUsers >= numbersOfUsersToSend) {
       this.route.setReadyToGo()
       this.route.restartWaitingTime()
